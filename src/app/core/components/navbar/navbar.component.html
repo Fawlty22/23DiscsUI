@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+    <button [matMenuTriggerFor]="menu" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" yPosition="below">
+      <button mat-menu-item>Collection & Bag</button>
+      <button mat-menu-item>Profile</button>
+    </mat-menu>
+    <span>{{title}}</span>
+    <span class="spacer"></span>
+    <button mat-icon-button  >
+      <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>supervised_user_circle</mat-icon>
+    </button>
+  </mat-toolbar>
