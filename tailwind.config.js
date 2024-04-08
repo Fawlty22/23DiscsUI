@@ -14,7 +14,8 @@ module.exports = {
       'gray-light': '#d3dce6',
       'white': '#ffffff',
       'primary': '#9B26AF',
-      'accent': '#68EFAD'
+      'accent': '#68EFAD',
+      'mat-dark': '#4a4a4a'
     },
     extend: {},
   },
