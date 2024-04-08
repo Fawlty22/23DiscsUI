@@ -1,0 +1,24 @@
+<!-- Background -->
+<div class="w-full h-full relative background hidden sm:block"></div>
+
+
+<div class=" w-1/2 h-full absolute right-0 bg-gradient-to-tr from-gray-dark to-green hidden sm:flex justify-center items-center">
+
+<div class="login border border-1 rounded h-fit w-[300px] bg-white text-center p-2" >
+
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="">
+        <!-- Form inputs -->
+        <mat-form-field class="example-full-width" formControlName="username">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" formControlName="password">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password">
+          </mat-form-field>
+      </form>
+      <button mat-flat-button color="primary" type="submit">Login</button>
+      
+</div>
+</div>
