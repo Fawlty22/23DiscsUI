@@ -1,20 +1,21 @@
-<div class="w-full h-full relative background hidden sm:block"></div>
+<div class="w-full h-full relative background hidden lg:block"></div>
 
-<div class="w-full sm:w-1/2 h-full absolute right-0 bg-gradient-to-tr from-gray-dark to-green flex justify-center items-center">
-  <div class="login border border-1 rounded h-fit w-[300px] bg-mat-dark text-center text-white p-2">
+<div class="w-full lg:w-1/2 h-full absolute right-0 bg-gradient-to-r from-gray-dark to-primary flex justify-center items-center">
+  <div class="login border border-1 rounded h-fit w-[400px] lg:w-[300px] bg-mat-dark text-center text-white p-8">
 
     <h1>Login</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="">
-      <mat-form-field class="example-full-width" >
+      <mat-form-field class="w-full" >
         <mat-label>Username</mat-label>
         <input matInput placeholder="Username" formControlName="username"/>
       </mat-form-field>
-      <mat-form-field class="example-full-width" >
+      <mat-form-field class="w-full" >
         <mat-label>Password</mat-label>
         <input matInput placeholder="Password" formControlName="password"/>
       </mat-form-field>
-      <button mat-flat-button color="primary" type="submit">Login</button>
+      
+      <button mat-flat-button color="primary" type="submit" class="">Login</button>
     </form>
   </div>
 
