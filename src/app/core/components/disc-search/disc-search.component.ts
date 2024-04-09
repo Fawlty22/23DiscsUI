@@ -6,6 +6,9 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { DiscService } from '../../services/disc.service';
+import {take} from 'rxjs';
+import { DiscSearchResult } from '../../models/disc-search-result.interface';
+
 @Component({
   selector: 'app-disc-search',
   standalone: true,
@@ -15,6 +18,7 @@ import { DiscService } from '../../services/disc.service';
 })
 export class DiscSearchComponent {
   discName: string = '';
+  results:DiscSearchResult[] = [];
   constructor(private discService:DiscService, public dialogRef: MatDialogRef<DiscSearchComponent>){}
   
   close(){
@@ -22,6 +26,7 @@ export class DiscSearchComponent {
   }
 
   searchForDisc(){
-    this.discService.getDiscByName(this.discName).subscribe(res => console.log(res))
+    if(!this.discName) return;
+    this.discService.getDiscByName(this.discName).pipe(take(1)).subscribe((responseDiscs: DiscSearchResult[]) => this.results = responseDiscs)
   }
 }

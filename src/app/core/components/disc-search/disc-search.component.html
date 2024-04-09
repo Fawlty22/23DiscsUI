@@ -1,19 +1,25 @@
-<h1>Disc Search</h1>
+<div class="p-2 w-full h-full">
+<h1 class="text-accent">Disc Search</h1>
 
-<mat-dialog-content class="w-full h-full">
+<mat-dialog-content class="w-full h-full" >
 
-    <div class="w-full flex justify-center items-center">
+    <div class="w-full flex gap-2 justify-center items-center">
         <mat-form-field class="w-4/5" subscriptSizing="dynamic">
             <mat-label>Disc Name</mat-label>
-            <input matInput [(ngModel)]="discName">
+            <input matInput [(ngModel)]="discName" (keyup.enter)="searchForDisc()">
         </mat-form-field>
-        <button mat-mini-fab color="accent" (click)="searchForDisc()"><mat-icon>search</mat-icon></button>
+        <button mat-mini-fab color="accent" (click)="searchForDisc()"><mat-icon color="primary">search</mat-icon></button>
     </div>
-    
 
+    @if(results.length > 0){
+        @for(disc of results; track disc.id){
+            <p> {{disc | json}}</p>
+        }
+    }
+    
   </mat-dialog-content>
 
-
-  <mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="discName" cdkFocusInitial>Ok</button>
+  <mat-dialog-actions align="end">
+    <button mat-flat-button [mat-dialog-close]="discName" cdkFocusInitial color="warn">Close</button>
   </mat-dialog-actions>
+</div>
