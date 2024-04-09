@@ -10,7 +10,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   function isTokenExpired(authToken: string): boolean {
     const decodedToken = jwtDecode(authToken);
     // Check if the expiration time (exp) is less than the current time
-    return decodedToken.exp ? decodedToken.exp < Date.now() / 1000 : false;
+    return decodedToken.exp ? decodedToken.exp < Date.now() / 1000 : true;
   }
 
   if(authToken && isTokenExpired(authToken)){
