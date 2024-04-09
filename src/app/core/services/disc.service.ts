@@ -8,17 +8,17 @@ import {environment} from '../../../environments/environment';
   providedIn: 'root'
 })
 export class DiscService {
-  baseUrl: string = `${environment.url}/disc`;
+  baseUrl: string = `${environment.url}/discs`;
   constructor(private http: HttpClient) { }
 
   getDiscByName(discName: string):Observable<Disc> {
-    return this.http.get<Disc>(this.baseUrl)
-    .pipe(
-      catchError(error => {
-        console.error('Error fetching data:', error);
-        throw error; 
-      })
-    );
+    return this.http.get<Disc>(`${this.baseUrl}/search?name=${discName}`)
+    // .pipe(
+    //   catchError(error => {
+    //     console.error('Error fetching data:', error);
+    //     throw error; 
+    //   })
+    // );
   }
 
 

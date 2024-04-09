@@ -1,0 +1,19 @@
+<h1>Disc Search</h1>
+
+<mat-dialog-content class="w-full h-full">
+
+    <div class="w-full flex justify-center items-center">
+        <mat-form-field class="w-4/5" subscriptSizing="dynamic">
+            <mat-label>Disc Name</mat-label>
+            <input matInput [(ngModel)]="discName">
+        </mat-form-field>
+        <button mat-mini-fab color="accent" (click)="searchForDisc()"><mat-icon>search</mat-icon></button>
+    </div>
+    
+
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="discName" cdkFocusInitial>Ok</button>
+  </mat-dialog-actions>
