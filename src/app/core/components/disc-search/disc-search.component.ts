@@ -19,6 +19,7 @@ import { Disc } from '../../models/disc.interface';
 })
 export class DiscSearchComponent {
   discName: string = '';
+  searched: boolean = false;
   results: DiscSearchResult[] = [];
   collection: Disc[] = [];
   constructor(private discService:DiscService, public dialogRef: MatDialogRef<DiscSearchComponent>){}
@@ -28,6 +29,7 @@ export class DiscSearchComponent {
   }
 
   searchForDisc(){
+    this.searched = true;
     if(!this.discName) return;
     this.discService.getDiscByName(this.discName).pipe(take(1)).subscribe((responseDiscs: DiscSearchResult[]) => this.results = responseDiscs)
   }

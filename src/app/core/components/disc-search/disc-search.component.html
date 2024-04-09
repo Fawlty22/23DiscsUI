@@ -4,14 +4,15 @@
 <mat-dialog-content class="w-full h-full" >
 
     <div class="w-full flex gap-2 justify-center items-center">
-        <mat-form-field class="w-4/5" subscriptSizing="dynamic">
+        <mat-form-field class="w-4/5 mb-2" subscriptSizing="dynamic">
             <mat-label>Disc Name</mat-label>
             <input matInput [(ngModel)]="discName" (keyup.enter)="searchForDisc()">
         </mat-form-field>
         <button mat-mini-fab color="accent" (click)="searchForDisc()"><mat-icon color="primary">search</mat-icon></button>
     </div>
 
-    @if(results.length > 0){
+    @if (!searched){ <p>Search for a disc to add to your collection!</p>}
+    @if(searched && results.length > 0){
         <ul>
             @for(disc of results; track disc.id){
                 <li class="flex items-center gap-2 mt-2">
@@ -21,6 +22,8 @@
             }
         </ul>
         
+    } @else if (searched && !results.length) {
+        <p>No results found. Try again...</p>
     }
     
   </mat-dialog-content>
