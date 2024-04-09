@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -21,7 +22,8 @@ export class LoginComponent {
 
 
   onSubmit() {
-      console.log(this.loginForm.value);
+      // console.log(this.loginForm.value);
+      this.authService.login(this.loginForm.value)
   }
 
 }
