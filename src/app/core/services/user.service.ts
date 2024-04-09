@@ -11,9 +11,7 @@ export class UserService {
   // TODO: update
   baseUrl: string = `${environment.url}/users`;
   currentUser: User;
-  constructor(private http: HttpClient) {
-    console.log(environment)
-   }
+  constructor(private http: HttpClient) {}
 
   getUser(userId: number):Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/${userId}`)
