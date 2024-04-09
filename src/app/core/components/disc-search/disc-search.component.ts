@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DiscService } from '../../services/disc.service';
 import {take} from 'rxjs';
 import { DiscSearchResult } from '../../models/disc-search-result.interface';
+import { Disc } from '../../models/disc.interface';
 
 @Component({
   selector: 'app-disc-search',
@@ -18,7 +19,8 @@ import { DiscSearchResult } from '../../models/disc-search-result.interface';
 })
 export class DiscSearchComponent {
   discName: string = '';
-  results:DiscSearchResult[] = [];
+  results: DiscSearchResult[] = [];
+  collection: Disc[] = [];
   constructor(private discService:DiscService, public dialogRef: MatDialogRef<DiscSearchComponent>){}
   
   close(){

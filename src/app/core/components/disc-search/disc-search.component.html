@@ -12,14 +12,20 @@
     </div>
 
     @if(results.length > 0){
-        @for(disc of results; track disc.id){
-            <p> {{disc | json}}</p>
-        }
+        <ul>
+            @for(disc of results; track disc.id){
+                <li class="flex items-center gap-2 mt-2">
+                    <span><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
+                    <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
+                </li>
+            }
+        </ul>
+        
     }
     
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button mat-flat-button [mat-dialog-close]="discName" cdkFocusInitial color="warn">Close</button>
+    <button mat-flat-button [mat-dialog-close]="collection" cdkFocusInitial color="warn">Close</button>
   </mat-dialog-actions>
 </div>
