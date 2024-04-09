@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './core/services/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -10,6 +11,7 @@ import { LoginComponent } from './login/login.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  loggedIn: boolean = false;
+  loggedIn = this.authService.loggedin;
   title = '23Discs';
+  constructor(private authService: AuthService){}
 }
