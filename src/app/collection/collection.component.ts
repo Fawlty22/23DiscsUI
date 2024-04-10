@@ -24,7 +24,6 @@ export class CollectionComponent implements OnInit {
   constructor(private discService: DiscService, private authService: AuthService, private dialog: MatDialog){}
 
   ngOnInit(): void {
-    console.log(this.authService.loggedInUser())
     this.discService.setCollection(this.authService.loggedInUser().id);
   }
 

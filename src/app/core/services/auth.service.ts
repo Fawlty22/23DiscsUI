@@ -32,20 +32,16 @@ export class AuthService {
       authResponse => {
       this.storeToken(authResponse.access_token);
       this.loggedInUserToken = jwtDecode(this.getToken()!);
-
       this.userService.getUser(this.loggedInUserToken!.userId)
         .pipe(take(1))
         .subscribe(
           res => {
-            console.log(res)
             this.loggedInUser$.set(res);
             this.loggedIn$.update(()=> true);
             this.router.navigate(['/collection']);
           },
           err => console.error(err)
         );
-      
-      
     },
       error => {
         throw new Error(error);
@@ -57,7 +53,6 @@ export class AuthService {
     // this.discService.collection$.set([]);
     this.loggedInUser$.set({} as User);
     this.loggedIn$.set(false);
-
     this.loggedInUserToken = null;
     this.removeToken();
     this.router.navigate(['/login']);
