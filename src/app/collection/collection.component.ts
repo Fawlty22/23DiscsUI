@@ -18,18 +18,14 @@ import { take } from 'rxjs';
   styleUrl: './collection.component.scss'
 })
 export class CollectionComponent implements OnInit {
-  collection: Disc[] = [];
+  collection = this.discService.collection;
   bag: Disc[] = [];
-  loggedInUser = this.authService.loggedInUser;
+  // loggedInUser = this.authService.loggedInUser;
   constructor(private discService: DiscService, private authService: AuthService, private dialog: MatDialog){}
 
   ngOnInit(): void {
-    this.discService.getCollection(this.loggedInUser().id)
-    .pipe(take(1))
-    .subscribe(
-      (response: Disc[]) => {
-        this.collection = response;
-    });
+    // this.discService.setCollection(this.loggedInUser().id);
+   
   }
 
   openDiscSearchModal(){

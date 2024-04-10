@@ -15,7 +15,9 @@ export class DiscService {
   collection$ = signal<Disc[]>([]);
   collection = computed(this.collection$);
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.setCollection(this.loggedInUser().id);
+   }
 
   addDiscToCollection(newDisc: Partial<Disc>): Observable<Disc> {
     return this.http.post<Disc>(this.baseUrl, newDisc)
@@ -57,7 +59,11 @@ export class DiscService {
     );
   }
 
- 
+  setCollection(userId: number):void {
+    this.http.get<Disc[]>(`${this.baseUrl}/collection/${userId}`)
+    .pipe(take(1))
+    .subscribe((res: Disc[]) => {this.collection$.set(res)});
+  }
 
   updateDisc(disc:Disc): Observable<Disc> {
     return this.http.put<Disc>(`${this.baseUrl}/${disc.id}`, disc)

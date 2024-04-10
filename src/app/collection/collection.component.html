@@ -2,16 +2,16 @@
     <app-bag [discs]="[]" class="h-1/2 lg:h-full w-full lg:w-1/3"></app-bag>
     <section class="w-full lg:w-2/3 h-1/2 lg:h-full p-2">
         <div class=" flex items-center justify-between"> 
-            <h1 class="text-accent">Collection</h1>
+            <h1 class="text-white">Collection</h1>
             <button mat-mini-fab color="accent" (click)="openDiscSearchModal()"><mat-icon color="primary">add</mat-icon></button>
         </div>
 
-        @for(disc of collection; track disc.id){
-            <li class="flex items-center gap-2 mt-2">
-                <span><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
-                <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
-                <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
-                <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
+        @for(disc of collection(); track disc.id){
+            <li class="flex items-center text-accent gap-2 mt-2">
+                <span class="text-white"><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
+                <button mat-icon-button color="white"><mat-icon>backpack</mat-icon></button>
+                <button mat-icon-button color="white"><mat-icon>warehouse</mat-icon></button>
+                <button mat-icon-button color="white"><mat-icon>delete</mat-icon></button>
             </li>
         }
     </section>
