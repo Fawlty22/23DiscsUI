@@ -3,11 +3,12 @@ import {Disc} from '../core/models/disc.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { DiscService } from '../core/services/disc.service';
 import { take } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-bag',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, MatButtonModule],
   templateUrl: './bag.component.html',
   styleUrl: './bag.component.scss'
 })
