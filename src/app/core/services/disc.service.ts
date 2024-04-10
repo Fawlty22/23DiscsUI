@@ -25,6 +25,9 @@ export class DiscService {
       catchError(error => {
         console.error('Error fetching data:', error);
         throw error; 
+      }),
+      tap((newDisc:Disc) => {
+        this.collection$.update(collection => [...collection, newDisc]);
       })
     );
   }
