@@ -80,6 +80,7 @@ export class DiscService {
     userId: this.loggedInUser().id,
     name: discSearchResult.name,
     brand: discSearchResult.brand,
+    bag: false,
     category: discSearchResult.category,
     speed: discSearchResult.speed,
     glide: discSearchResult.glide,

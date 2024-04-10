@@ -1,6 +1,7 @@
 export interface Disc {
     id:number;
     userId: number;
+    bag: boolean;
     name: string;
     brand: string;
     category: string;

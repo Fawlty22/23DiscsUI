@@ -14,8 +14,8 @@ export class AuthService {
   baseUrl: string = `${environment.url}/login`;
   loggedIn$ = signal<boolean>(!!this.getToken() && !this.isTokenExpired(this.getToken()));
   loggedin = computed(this.loggedIn$);
-  loggedInUserToken: {userId: number} = jwtDecode(this.getToken()!);
-  loggedInUser$ = signal<User>({id: this.loggedInUserToken.userId} as User);
+  loggedInUserToken: {userId: number}| null = this.getToken() ? jwtDecode(this.getToken()!) : null;
+  loggedInUser$ = signal<User>({id: this.loggedInUserToken?.userId} as User);
   loggedInUser = computed(this.loggedInUser$);
 
   constructor(private http: HttpClient, private router: Router, private userService: UserService) {
