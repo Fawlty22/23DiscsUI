@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { Disc } from '../models/disc.interface';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, take } from 'rxjs';
 import {environment} from '../../../environments/environment';
 import { DiscSearchResult } from '../models/disc-search-result.interface';
 import { AuthService } from './auth.service';
@@ -12,6 +12,9 @@ import { AuthService } from './auth.service';
 export class DiscService {
   baseUrl: string = `${environment.url}/discs`;
   loggedInUser = this.authService.loggedInUser;
+  collection$ = signal<Disc[]>([]);
+  collection = computed(this.collection$);
+
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   addDiscToCollection(newDisc: Partial<Disc>): Observable<Disc> {
@@ -54,6 +57,8 @@ export class DiscService {
     );
   }
 
+ 
+
   updateDisc(disc:Disc): Observable<Disc> {
     return this.http.put<Disc>(`${this.baseUrl}/${disc.id}`, disc)
     .pipe(
@@ -64,18 +69,17 @@ export class DiscService {
     );
   }
 
-  translateToDisc(data: DiscSearchResult): Partial<Disc> {
-    
+  translateToDisc(discSearchResult: DiscSearchResult): Partial<Disc> {
     return {
     userId: this.loggedInUser().id,
-    name: data.name,
-    brand: data.brand,
-    category: data.category,
-    speed: data.speed,
-    glide: data.glide,
-    turn: data.turn,
-    fade: data.fade,
-    flightpath: data.pic
+    name: discSearchResult.name,
+    brand: discSearchResult.brand,
+    category: discSearchResult.category,
+    speed: discSearchResult.speed,
+    glide: discSearchResult.glide,
+    turn: discSearchResult.turn,
+    fade: discSearchResult.fade,
+    flightpath: discSearchResult.pic
     }
   }
 

@@ -24,8 +24,12 @@ export class CollectionComponent implements OnInit {
   constructor(private discService: DiscService, private authService: AuthService, private dialog: MatDialog){}
 
   ngOnInit(): void {
-    this.discService.getCollection(this.loggedInUser().id).pipe(take(1)).subscribe(res => {this.collection = res; console.log(this.collection, res);});
-    
+    this.discService.getCollection(this.loggedInUser().id)
+    .pipe(take(1))
+    .subscribe(
+      (response: Disc[]) => {
+        this.collection = response;
+    });
   }
 
   openDiscSearchModal(){

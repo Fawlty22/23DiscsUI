@@ -5,5 +5,14 @@
             <h1 class="text-accent">Collection</h1>
             <button mat-mini-fab color="accent" (click)="openDiscSearchModal()"><mat-icon color="primary">add</mat-icon></button>
         </div>
+
+        @for(disc of collection; track disc.id){
+            <li class="flex items-center gap-2 mt-2">
+                <span><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
+                <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
+                <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
+                <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
+            </li>
+        }
     </section>
 </div>
