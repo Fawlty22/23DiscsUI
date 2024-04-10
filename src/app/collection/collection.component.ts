@@ -29,8 +29,8 @@ export class CollectionComponent implements OnInit {
 
   openDiscSearchModal(){
     const dialogRef = this.dialog.open(DiscSearchComponent, {disableClose: false, width: '80vw', height: '75vh'})
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
+    dialogRef.afterClosed().pipe(take(1)).subscribe(result => {
+      
     })
   }
 

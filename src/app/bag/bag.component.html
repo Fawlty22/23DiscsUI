@@ -2,9 +2,8 @@
   <h1 class="text-accent">Bag</h1>
   @for(disc of collection; track disc.id){ @if(disc.bag){
   <li class="flex items-center text-accent gap-2 mt-2">
-    <span class="text-white"
-      ><b>{{ disc.name }}</b
-      >&nbsp;|&nbsp;{{ disc.brand }}</span
+    <span class="text-white">
+      <b>{{ disc.name }} | {{ disc.brand }}</b> <br/> {{disc.speed}} | {{disc.glide}} | {{disc.turn}} | {{disc.fade}} </span
     >
     <button
       mat-icon-button
