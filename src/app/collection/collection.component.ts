@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { BagComponent } from '../bag/bag.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DiscService } from '../core/services/disc.service';
@@ -8,12 +8,13 @@ import { DiscSearchComponent } from '../core/components/disc-search/disc-search.
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../core/services/user.service';
 import { AuthService } from '../core/services/auth.service';
-import { take } from 'rxjs';
+import {MatMenu, MatMenuModule, MatMenuTrigger} from '@angular/material/menu';
 
+import { take } from 'rxjs';
 @Component({
   selector: 'app-collection',
   standalone: true,
-  imports: [BagComponent, MatIconModule, MatDialogModule, MatButtonModule],
+  imports: [BagComponent, MatIconModule, MatDialogModule, MatButtonModule, MatMenuModule],
   templateUrl: './collection.component.html',
   styleUrl: './collection.component.scss'
 })
@@ -42,5 +43,6 @@ export class CollectionComponent implements OnInit {
   deleteDisc(discId:number){
     this.discService.deleteDisc(discId).pipe(take(1)).subscribe()
   }
+
 
 }

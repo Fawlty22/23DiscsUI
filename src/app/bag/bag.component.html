@@ -1,12 +1,25 @@
 <div class="h-full bg-purple p-2">
-    <h1 class="text-accent">Bag</h1>
-    @for(disc of collection; track disc.id){
-        @if(disc.bag){
-            <li class="flex items-center text-accent gap-2 mt-2">
-            <span class="text-white"><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
-            <button mat-icon-button color="white" (click)="addDiscToCollection(disc)" class="invisible"><mat-icon>warehouse</mat-icon></button>
-            <!-- <button class="invisible" mat-icon-button color="white"><mat-icon>delete</mat-icon></button> -->
-        </li>
-        }
-    }
+  <h1 class="text-accent">Bag</h1>
+  @for(disc of collection; track disc.id){ @if(disc.bag){
+  <li class="flex items-center text-accent gap-2 mt-2">
+    <span class="text-white"
+      ><b>{{ disc.name }}</b
+      >&nbsp;|&nbsp;{{ disc.brand }}</span
+    >
+    <button
+      mat-icon-button
+      color="white"
+      (click)="addDiscToCollection(disc)"
+      class="invisible"
+    >
+      <mat-icon>warehouse</mat-icon>
+    </button>
+    <mat-icon [matMenuTriggerFor]="menu" class="invisible" color="accent"
+      >flight</mat-icon
+    >
+    <mat-menu #menu="matMenu">
+      <img [src]="disc.flightpath" alt="flightpath" />
+    </mat-menu>
+  </li>
+  } }
 </div>
