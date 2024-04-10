@@ -1,4 +1,4 @@
-import { Injectable, WritableSignal, signal, computed } from '@angular/core';
+import { Injectable, WritableSignal, signal, computed, forwardRef, Inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of, take } from 'rxjs';
@@ -7,6 +7,8 @@ import { User } from '../models/user.interface';
 import {Router} from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { UserService } from './user.service';
+import { DiscService } from './disc.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +20,10 @@ export class AuthService {
   loggedInUser$ = signal<User>({id: this.loggedInUserToken?.userId} as User);
   loggedInUser = computed(this.loggedInUser$);
 
-  constructor(private http: HttpClient, private router: Router, private userService: UserService) {
+  constructor(
+    private http: HttpClient, 
+    private router: Router, 
+    private userService: UserService) {
     if (!this.loggedIn$()) this.logout();
   }
 
@@ -26,15 +31,21 @@ export class AuthService {
     this.http.post<any>(this.baseUrl, loginData).subscribe(
       authResponse => {
       this.storeToken(authResponse.access_token);
-      this.userService.getUser(authResponse.access_token.userId)
+      this.loggedInUserToken = jwtDecode(this.getToken()!);
+
+      this.userService.getUser(this.loggedInUserToken!.userId)
         .pipe(take(1))
         .subscribe(
-          res => this.loggedInUser$ = signal<User>(res),
+          res => {
+            console.log(res)
+            this.loggedInUser$.set(res);
+            this.loggedIn$.update(()=> true);
+            this.router.navigate(['/collection']);
+          },
           err => console.error(err)
         );
-      this.loggedIn$.update(()=> true);
-      this.router.navigate(['/collection']);
-
+      
+      
     },
       error => {
         throw new Error(error);
@@ -42,8 +53,13 @@ export class AuthService {
   }
 
   logout() {
+    // Circular dependency so fix for now is do this in navbar
+    // this.discService.collection$.set([]);
+    this.loggedInUser$.set({} as User);
+    this.loggedIn$.set(false);
+
+    this.loggedInUserToken = null;
     this.removeToken();
-    this.loggedIn$.update(() => false);
     this.router.navigate(['/login']);
   }
 

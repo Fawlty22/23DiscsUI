@@ -1,8 +1,11 @@
-<ng-container *ngIf="user$ | async as user">
+<section class="p-2 bg-gray-light text-white h-full w-full">
+  <div class="border border-1 border-accent bg-gray-dark p-2 rounded" *ngIf="user$ | async as user">
   <p>Name: {{ user.username }}</p>
-  <p>PDGA Number: {{ user.pdga_number }}</p>
-  <p>First Name: {{ user.first_name }}</p>
-  <p>Last Name: {{ user.last_name }}</p>
+  <p>PDGA Number: {{ user.pdgaNumber }}</p>
+  <p>First Name: {{ user.firstName }}</p>
+  <p>Last Name: {{ user.lastName }}</p>
   <p>Email: {{ user.email }}</p>
   <p>Role: {{ user.role }}</p>
-</ng-container>
+</div>
+</section>
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, effect} from '@angular/core';
 import { BagComponent } from '../bag/bag.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DiscService } from '../core/services/disc.service';
@@ -24,7 +24,8 @@ export class CollectionComponent implements OnInit {
   constructor(private discService: DiscService, private authService: AuthService, private dialog: MatDialog){}
 
   ngOnInit(): void {
-
+    console.log(this.authService.loggedInUser())
+    this.discService.setCollection(this.authService.loggedInUser().id);
   }
 
   openDiscSearchModal(){

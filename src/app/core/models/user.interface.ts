@@ -2,9 +2,9 @@ import { Disc } from "./disc.interface";
 
 export interface User {
     id:number;
-    pdga_number: string;
-    first_name: string;
-    last_name: string;
+    pdgaNumber: string;
+    firstName: string;
+    lastName: string;
     email:string;
     username: string;
     password: string;

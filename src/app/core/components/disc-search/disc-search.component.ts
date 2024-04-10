@@ -40,7 +40,6 @@ export class DiscSearchComponent {
 
   addDiscToCollection(discData: DiscSearchResult){
     const newDisc = this.discService.translateToDisc(discData);
-    console.log(newDisc);
     this.discService.addDiscToCollection(newDisc)
     .pipe(take(1))
     .subscribe((response: Disc) => this.collection.push(response));

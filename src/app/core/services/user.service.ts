@@ -10,7 +10,6 @@ import {environment} from '../../../environments/environment';
 export class UserService {
   // TODO: update
   baseUrl: string = `${environment.url}/users`;
-  currentUser: User;
   constructor(private http: HttpClient) {}
 
   getUser(userId: number):Observable<User> {

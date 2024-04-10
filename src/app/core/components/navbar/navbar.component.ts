@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { AuthService } from '../../services/auth.service';
 import { RouterModule } from '@angular/router';
+import { DiscService } from '../../services/disc.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -15,8 +16,9 @@ import { RouterModule } from '@angular/router';
 export class NavbarComponent {
   @Input() title: string = '';
 
-constructor(private authService: AuthService){}
+constructor(private authService: AuthService, private discService: DiscService){}
   logout(){
+    this.discService.collection$.set([]);
     this.authService.logout();
   }
 }
