@@ -3,7 +3,8 @@
   @for(disc of collection; track disc.id){ @if(disc.bag){
   <li class="flex items-center text-accent gap-2 mt-2">
     <span class="text-white">
-      <b>{{ disc.name }} | {{ disc.brand }}</b> <br/> {{disc.speed}} | {{disc.glide}} | {{disc.turn}} | {{disc.fade}} </span
+      <strong>{{ disc.name }}</strong> - <em>{{ disc.brand }}</em>
+      <br/> {{disc.speed}} | {{disc.glide}} | {{disc.turn}} | {{disc.fade}} </span
     >
     <button
       mat-icon-button

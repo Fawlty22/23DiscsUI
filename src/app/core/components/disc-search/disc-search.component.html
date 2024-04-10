@@ -11,7 +11,7 @@
         <button mat-mini-fab color="accent" (click)="searchForDisc()"><mat-icon color="primary">search</mat-icon></button>
     </div>
 
-    @if (!searched){ <p>Search for a disc to add to your collection!</p>}
+    @if (!searched){ <p class="text-center">Search for a disc to add to your collection!</p>}
     @if(searched && results.length > 0){
         <ul>
             @for(disc of results; track disc.id){
