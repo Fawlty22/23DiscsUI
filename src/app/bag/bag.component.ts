@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import {Disc} from '../core/models/disc.interface';
 import { MatIconModule } from '@angular/material/icon';
+import { DiscService } from '../core/services/disc.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-bag',
@@ -10,6 +12,12 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './bag.component.scss'
 })
 export class BagComponent {
-  @Input() discs: Disc[] = [];
+  @Input() collection: Disc[] = [];
+
+  constructor(private discService: DiscService){}
   
+  addDiscToCollection(disc:Disc){
+    disc.bag = false;
+    const newDisc = this.discService.updateDisc(disc).pipe(take(1)).subscribe()
+  }
 }

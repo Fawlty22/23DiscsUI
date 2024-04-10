@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal, computed } from '@angular/core';
 import { Disc } from '../models/disc.interface';
-import { Observable, catchError, take } from 'rxjs';
+import { Observable, catchError, take, tap } from 'rxjs';
 import {environment} from '../../../environments/environment';
 import { DiscSearchResult } from '../models/disc-search-result.interface';
 import { AuthService } from './auth.service';
@@ -71,6 +71,16 @@ export class DiscService {
       catchError(error => {
         console.error('Error fetching data:', error);
         throw error; 
+      }),
+      tap((updatedDisc:Disc) => {
+        let index = this.collection().findIndex(disc => disc.id === updatedDisc.id);
+        if( index !== -1) {
+          const collection = this.collection();
+          collection[index] = {...collection[index], ...updatedDisc}
+          this.collection
+        } else {
+          this.collection$.update(value => [...value, updatedDisc])
+        }
       })
     );
   }

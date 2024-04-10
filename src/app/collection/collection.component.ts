@@ -33,4 +33,10 @@ export class CollectionComponent implements OnInit {
     })
   }
 
+  addDiscToBag(disc: Disc): void {
+    const updatedDisc = {...disc, bag:true}
+    const newDisc = this.discService.updateDisc(updatedDisc).pipe(take(1)).subscribe()
+    
+  }
+
 }

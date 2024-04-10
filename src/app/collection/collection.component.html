@@ -1,5 +1,5 @@
 <div class="bg-mat-dark w-full h-full flex flex-wrap lg:flex-nowrap ">
-    <app-bag [discs]="collection()" class="h-1/2 lg:h-full w-full lg:w-1/3"></app-bag>
+    <app-bag [collection]="collection()" class="h-1/2 lg:h-full w-full lg:w-1/3"></app-bag>
     <section class="w-full lg:w-2/3 h-1/2 lg:h-full p-2">
         <div class=" flex items-center justify-between"> 
             <h1 class="text-white">Collection</h1>
@@ -9,9 +9,9 @@
             @if(!disc.bag){
                 <li class="flex items-center text-accent gap-2 mt-2">
                 <span class="text-white"><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
-                <button mat-icon-button color="white"><mat-icon>backpack</mat-icon></button>
-                <button mat-icon-button color="white"><mat-icon>delete</mat-icon></button>
-            </li>
+                <button class="invisible" mat-icon-button color="white" (click)="addDiscToBag(disc)"><mat-icon>backpack</mat-icon></button>
+                <button class="invisible" mat-icon-button color="white"><mat-icon>delete</mat-icon></button>
+                </li>
             }
         }
     </section>
