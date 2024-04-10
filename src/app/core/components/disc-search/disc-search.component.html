@@ -17,7 +17,7 @@
             @for(disc of results; track disc.id){
                 <li class="flex items-center gap-2 mt-2">
                     <span><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
-                    <button mat-icon-button color="accent"><mat-icon>add</mat-icon></button>
+                    <button mat-icon-button color="accent" (click)="addDiscToCollection(disc)"><mat-icon>add</mat-icon></button>
                 </li>
             }
         </ul>

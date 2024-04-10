@@ -6,6 +6,9 @@ import { Disc } from '../core/models/disc.interface';
 import {MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DiscSearchComponent } from '../core/components/disc-search/disc-search.component';
 import { MatButtonModule } from '@angular/material/button';
+import { UserService } from '../core/services/user.service';
+import { AuthService } from '../core/services/auth.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-collection',
@@ -17,16 +20,18 @@ import { MatButtonModule } from '@angular/material/button';
 export class CollectionComponent implements OnInit {
   collection: Disc[] = [];
   bag: Disc[] = [];
-  constructor(private discService: DiscService, private dialog: MatDialog){}
+  loggedInUser = this.authService.loggedInUser;
+  constructor(private discService: DiscService, private authService: AuthService, private dialog: MatDialog){}
 
   ngOnInit(): void {
-    // this.discService.getCollection()
+    this.discService.getCollection(this.loggedInUser().id).pipe(take(1)).subscribe(res => {this.collection = res; console.log(this.collection, res);});
+    
   }
 
   openDiscSearchModal(){
     const dialogRef = this.dialog.open(DiscSearchComponent, {disableClose: false, width: '80vw', height: '75vh'})
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      console.log('afterclosed',result);
     })
   }
 

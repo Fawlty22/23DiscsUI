@@ -29,8 +29,20 @@ export class DiscSearchComponent {
   }
 
   searchForDisc(){
-    this.searched = true;
     if(!this.discName) return;
-    this.discService.getDiscByName(this.discName).pipe(take(1)).subscribe((responseDiscs: DiscSearchResult[]) => this.results = responseDiscs)
+    this.discService.getDiscByName(this.discName)
+    .pipe(take(1))
+    .subscribe((responseDiscs: DiscSearchResult[]) => {
+      this.results = responseDiscs;
+      this.searched = true;this.results = responseDiscs;
+    })
   }
+
+  addDiscToCollection(discData: DiscSearchResult){
+    const newDisc = this.discService.translateToDisc(discData);
+    console.log(newDisc);
+    this.discService.addDiscToCollection(newDisc).pipe(take(1)).subscribe((res: Disc)=> this.collection.push(res));
+  }
+
+  
 }

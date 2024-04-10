@@ -1,5 +1,6 @@
 export interface Disc {
-    user_id: number;
+    id:number;
+    userId: number;
     name: string;
     brand: string;
     category: string;
