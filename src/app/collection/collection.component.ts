@@ -19,13 +19,11 @@ import { take } from 'rxjs';
 })
 export class CollectionComponent implements OnInit {
   collection = this.discService.collection;
-  bag: Disc[] = [];
-  // loggedInUser = this.authService.loggedInUser;
+
   constructor(private discService: DiscService, private authService: AuthService, private dialog: MatDialog){}
 
   ngOnInit(): void {
-    // this.discService.setCollection(this.loggedInUser().id);
-   
+
   }
 
   openDiscSearchModal(){

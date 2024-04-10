@@ -1,3 +1,12 @@
 <div class="h-full bg-gray p-2">
     <h1 class="text-accent">Bag</h1>
+    @for(disc of discs; track disc.id){
+        @if(disc.bag){
+            <li class="flex items-center text-accent gap-2 mt-2">
+            <span class="text-white"><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
+            <button mat-icon-button color="white"><mat-icon>warehouse</mat-icon></button>
+            <button mat-icon-button color="white"><mat-icon>delete</mat-icon></button>
+        </li>
+        }
+    }
 </div>
