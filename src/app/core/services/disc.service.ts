@@ -84,6 +84,30 @@ export class DiscService {
       })
     );
   }
+  
+
+  deleteDisc(id: number){
+    return this.http.delete(`${this.baseUrl}/${id}`)
+    .pipe(
+      catchError(error => {
+        console.error('Error fetching data:', error);
+        throw error; 
+      }),
+      tap((result:any) => {
+       console.log(result)
+        if (result.affected) {
+          let index = this.collection().findIndex(disc => disc.id === id);
+          this.collection().splice(index, 1);
+        } else {
+          throw new Error('Something went wrong');
+        }
+      })
+    )
+    
+    
+    
+    
+  }
 
   translateToDisc(discSearchResult: DiscSearchResult): Partial<Disc> {
     return {

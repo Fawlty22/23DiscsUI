@@ -39,4 +39,8 @@ export class CollectionComponent implements OnInit {
     
   }
 
+  deleteDisc(discId:number){
+    this.discService.deleteDisc(discId).pipe(take(1)).subscribe()
+  }
+
 }

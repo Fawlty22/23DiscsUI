@@ -10,7 +10,7 @@
                 <li class="flex items-center text-accent gap-2 mt-2">
                 <span class="text-white"><b>{{disc.name}}</b>&nbsp;|&nbsp;{{disc.brand}}</span>
                 <button class="invisible" mat-icon-button color="white" (click)="addDiscToBag(disc)"><mat-icon>backpack</mat-icon></button>
-                <button class="invisible" mat-icon-button color="white"><mat-icon>delete</mat-icon></button>
+                <button class="invisible" mat-icon-button color="white" (click)="deleteDisc(disc.id)"><mat-icon>delete</mat-icon></button>
                 </li>
             }
         }
