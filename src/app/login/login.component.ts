@@ -3,16 +3,18 @@ import { ReactiveFormsModule, FormGroup, Validators, FormBuilder} from '@angular
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { AuthService } from '../core/services/auth.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule, MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  hidePassword: boolean = false;
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -22,8 +24,8 @@ export class LoginComponent {
 
 
   onSubmit() {
-      // console.log(this.loginForm.value);
-      this.authService.login(this.loginForm.value)
+    console.log('submit')
+      this.authService.login(this.loginForm.value);
   }
 
 }
