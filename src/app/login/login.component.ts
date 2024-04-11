@@ -4,6 +4,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { AuthService } from '../core/services/auth.service';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from '../core/services/user.service';
+import { take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +16,42 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  hidePassword: boolean = false;
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  signUpMode: boolean = false;
+  signUpForm: FormGroup;
+  hidePassword: boolean = true;
+  constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.signUpForm = this.fb.group({
+      id: [0],
+      pdgaNumber: ['', ],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role: ['user']
+    });
   }
 
 
-  onSubmit() {
-    console.log('submit')
+  onLogin() {
       this.authService.login(this.loginForm.value);
+  }
+
+  onSignup(){
+    this.userService.createUser(this.signUpForm.value)
+    .pipe(tap(newUser => {
+      this.signUpForm.reset;
+      this.toggleSignUpMode();
+    }),take(1))
+    .subscribe()
+  }
+
+  toggleSignUpMode(){
+    this.signUpMode = !this.signUpMode;
   }
 
 }

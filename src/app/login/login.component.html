@@ -2,11 +2,12 @@
 
 <div class="w-full lg:w-1/2 h-full absolute right-0 bg-gradient-to-tr from-gray-dark to-accent flex justify-center items-center">
   <img src="../../assets/logo.png" class="absolute top-4 md:top-24">
-  <div class="login border border-1 rounded h-fit w-[400px] lg:w-[300px] bg-mat-dark text-center text-white p-8">
+  @if (!signUpMode){
+    <div class="login border border-1 rounded h-fit w-[400px] lg:w-[300px] bg-mat-dark text-center text-white p-4">
 
     <h1>Login</h1>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="mb-4">
       <mat-form-field class="w-full" >
         <mat-label>Username</mat-label>
         <input matInput placeholder="Username" formControlName="username"/>
@@ -21,7 +22,54 @@
       
       <button mat-flat-button color="primary" type="submit">Login</button>
     </form>
+  
+    <p class="text-accent underline cursor-pointer" (click)="toggleSignUpMode()">Dont have an account yet? Sign up!</p>
   </div>
+  } @else {
+    <div class="login border border-1 rounded h-fit w-[400px] lg:w-[300px] bg-mat-dark text-center text-white p-4">
 
+      <h1>Sign Up</h1>
+  
+      <form [formGroup]="signUpForm" (ngSubmit)="onSignup()" class="mb-4">
+        <mat-form-field class="w-full" >
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username"/>
+        </mat-form-field>
+
+        <mat-form-field class="w-full" >
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" formControlName="password" [type]="hidePassword ? 'password' : 'text'"/>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email">
+        </mat-form-field>
+    
+        <mat-form-field class="w-full">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="First Name">
+        </mat-form-field>
+    
+        <mat-form-field class="w-full">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Last Name">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>PDGA #</mat-label>
+          <input matInput formControlName="pdgaNumber" placeholder="PDGA Number">
+        </mat-form-field>
+ 
+        <button mat-flat-button color="primary" type="submit">Sign Up</button>
+      </form>
+    
+      <p class="text-accent underline cursor-pointer" (click)="toggleSignUpMode()">Just kidding. Back to Login</p>
+    </div>
+  }
+  
 </div>
 

@@ -22,6 +22,16 @@ export class UserService {
     );
   }
 
+  createUser(newUser: User): Observable<User> {
+    return this.http.post<User>(this.baseUrl, newUser)
+    .pipe(
+      catchError(error => {
+        console.error('Error updateing user:', error);
+        throw error; 
+      })
+    );
+  }
+
   updateUser(user: Partial<User>):Observable<User> {
     return this.http.put<User>(`${this.baseUrl}/${user.id}`, user)
     .pipe(
