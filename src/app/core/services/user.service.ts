@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.interface';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, tap} from 'rxjs';
 import {environment} from '../../../environments/environment';
 
 @Injectable({
@@ -22,8 +22,8 @@ export class UserService {
     );
   }
 
-  updateUser(user: User):Observable<User> {
-    return this.http.put<User>(this.baseUrl, user)
+  updateUser(user: Partial<User>):Observable<User> {
+    return this.http.put<User>(`${this.baseUrl}/${user.id}`, user)
     .pipe(
       catchError(error => {
         console.error('Error updateing user:', error);

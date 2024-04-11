@@ -1,11 +1,42 @@
 <section class="p-2 bg-gray-light text-white h-full w-full">
-  <div class="border border-1 border-accent bg-gray-dark p-2 rounded" *ngIf="user$ | async as user">
-  <p>Name: {{ user.username }}</p>
-  <p>PDGA Number: {{ user.pdgaNumber }}</p>
-  <p>First Name: {{ user.firstName }}</p>
-  <p>Last Name: {{ user.lastName }}</p>
-  <p>Email: {{ user.email }}</p>
-  <p>Role: {{ user.role }}</p>
-</div>
+  @if(user){
+    <div class="border border-1 border-accent bg-gray-dark p-2 rounded relative">
+    <button class="absolute top-2 right-2" (click)="editModeOn()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    @if(editMode){
+      <form [formGroup]="userForm" (ngSubmit)="updateUserInfo()">
+        <p>Username: {{ user.username }}</p>
+        <mat-form-field class="w-full">
+          <mat-label>PDGA #</mat-label>
+          <input matInput formControlName="pdgaNumber" placeholder="PDGA Number">
+        </mat-form-field>
+    
+        <mat-form-field class="w-full">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="First Name">
+        </mat-form-field>
+    
+        <mat-form-field class="w-full">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Last Name">
+        </mat-form-field>
+    
+        <mat-form-field class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email">
+        </mat-form-field>
+    
+        <button mat-raised-button type="submit" [disabled]="userForm.invalid">Save</button>
+      </form>
+    } @else {
+    <p>Username: {{ user.username }}</p>
+    <p>PDGA Number: {{ user.pdgaNumber }}</p>
+    <p>First Name: {{ user.firstName }}</p>
+    <p>Last Name: {{ user.lastName }}</p>
+    <p>Email: {{ user.email }}</p>
+    }
+  </div>
+  }
+  
 </section>
-
