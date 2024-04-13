@@ -1,4 +1,4 @@
-<section class="p-2 bg-gray-light text-white h-full w-full">
+<section class="p-4 bg-mat-dark text-white h-full w-full">
   @if(user){
     <div class="border border-1 border-accent bg-gray-dark p-2 rounded relative">
     <button class="absolute top-2 right-2" (click)="editModeOn()">
@@ -27,7 +27,7 @@
           <input matInput formControlName="email" placeholder="Email">
         </mat-form-field>
     
-        <button mat-raised-button type="submit" [disabled]="userForm.invalid">Save</button>
+        <button mat-raised-button type="submit" [disabled]="userForm.pristine || userForm.invalid">Save</button>
       </form>
     } @else {
     <p>Username: {{ user.username }}</p>
@@ -39,4 +39,5 @@
   </div>
   }
   
+  <p class="italic pt-2">The profile section will be expanded soon!</p>
 </section>

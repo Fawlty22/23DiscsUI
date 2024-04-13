@@ -1,20 +1,20 @@
 <mat-toolbar color="primary">
-    <button [matMenuTriggerFor]="menu" mat-icon-button>
+    <!-- <button [matMenuTriggerFor]="menu" mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu" yPosition="below">
       <button mat-menu-item routerLink="collection">Collection & Bag</button>
       <button mat-menu-item routerLink="profile">Profile</button>
-    </mat-menu>
-    <img src="../../../../assets/logo.png" height="50px" width="100px">
+    </mat-menu> -->
+    <img src="../../../../assets/logo.png" height="50px" width="100px" routerLink="/collection" class="cursor-pointer">
     <span class="spacer"></span>
-    <button mat-icon-button >
-      <mat-icon>settings</mat-icon>
+    <button mat-icon-button routerLink="/collection" matTooltip="Collection & Bag">
+      <mat-icon>warehouse</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button routerLink="/profile" matTooltip="Profile">
       <mat-icon>supervised_user_circle</mat-icon>
     </button>
-    <button mat-icon-button (click)="logout()">
+    <button mat-icon-button (click)="logout()" matTooltip="Logout">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
