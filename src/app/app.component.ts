@@ -12,6 +12,6 @@ import { AuthService } from './core/services/auth.service';
 })
 export class AppComponent {
   loggedIn = this.authService.loggedin;
-  title = '23Discs';
+  title = '22Discs';
   constructor(private authService: AuthService){}
 }
